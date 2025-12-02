@@ -283,4 +283,5 @@ intersphinx_mapping = {
     "pyscaffold": ("https://pyscaffold.org/en/stable", None),
 }
 
+
 print(f"loading configurations for {project} {version} ...", file=sys.stderr)
