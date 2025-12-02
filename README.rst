@@ -37,7 +37,7 @@ Affinity Propagation Clustering by Adrian Homa
 
  Introduction
 
-Affinity Propagation is a clustering algorithm that automatically finds the number of clusters in a dataset. The main advantage over methods like K-means is that you don't need to specify how many clusters you want beforehand. The algorithm identifies exemplars, which are representative data points that serve as cluster centers.
+Affinity Propagation is a clustering algorithm that automatically finds the number of clusters in a dataset. The algorithm identifies exemplars, which are representative data points that serve as cluster centers.
 
  Basic Idea
 
