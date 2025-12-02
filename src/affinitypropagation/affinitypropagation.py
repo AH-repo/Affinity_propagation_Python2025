@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 class AffinityPropagation:
     """
@@ -59,7 +59,6 @@ class AffinityPropagation:
         # Copy data if requested
         if self.copy:
             X = X.copy()
-
 
         n_samples = X.shape[0]
 
@@ -176,6 +175,7 @@ class AffinityPropagation:
 
         # center coordinates
         if self.affinity == 'euclidean':
+            self.X_ = X
             self.cluster_centers_ = X[self.cluster_centers_indices_]
         else:
             self.cluster_centers_ = None
@@ -196,3 +196,34 @@ class AffinityPropagation:
         """
         self.fit(X)
         return self.labels_
+
+    def plot(self, figsize=(10, 8)):
+        """
+        Visualizes all points and their exemplars (cluster centers).
+        """
+        if self.X_ is None or self.labels_ is None:
+            raise ValueError("Model not fitted or no euclidean data")
+
+        X_plot = self.X_[:, :2] if self.X_.shape[1] > 2 else self.X_
+        unique_labels = np.unique(self.labels_)
+        colors = plt.cm.rainbow(np.linspace(0, 1, len(unique_labels)))
+
+        plt.figure(figsize=figsize)
+
+        # Plot all points
+        for label, color in zip(unique_labels, colors):
+            mask = self.labels_ == label
+            plt.scatter(X_plot[mask, 0], X_plot[mask, 1], c=[color], s=100, alpha=0.6, label=f'Cluster {label}')
+
+        # Plot exemplars (center points)
+        if self.cluster_centers_indices_ is not None:
+            exemplars = X_plot[self.cluster_centers_indices_]
+            plt.scatter(exemplars[:, 0], exemplars[:, 1], c='red', marker='*',
+                        s=500, edgecolors='black', linewidth=2, label='Exemplars', zorder=10)
+
+        plt.title(f'Affinity Propagation: {len(unique_labels)} clusters')
+        plt.xlabel('Feature 1')
+        plt.ylabel('Feature 2')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.show()
