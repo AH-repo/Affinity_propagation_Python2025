@@ -33,7 +33,7 @@
 AffinityPropagation
 ===================
 
-Affinity Propagation Clustering
+Affinity Propagation Clustering by Adrian Homa
 
  Introduction
 
