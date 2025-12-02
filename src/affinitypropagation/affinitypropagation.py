@@ -62,7 +62,7 @@ class AffinityPropagation:
 
         n_samples = X.shape[0]
 
-        # 1. Compute or use precomputed similarity matrix
+        # Compute or use precomputed similarity matrix
         if self.affinity == 'precomputed':
             # X is already a similarity matrix
             if X.shape[0] != X.shape[1]:
@@ -74,7 +74,7 @@ class AffinityPropagation:
             S = self._compute_similarity_matrix(X)
             self.affinity_ = S
 
-        # 2. Set preference - how much a point wants to be an exemplar
+        # Set preference - how much a point wants to be an exemplar
         if self.preference is None:
             # Default: median of similarities
             preference = np.median(S)
@@ -84,7 +84,7 @@ class AffinityPropagation:
         # Set diagonal (similarity of point to itself)
         np.fill_diagonal(S, preference)
 
-        # 3. Initialize message matrices
+        # Initialize message matrices
         R = np.zeros((n_samples, n_samples))  # responsibility
         A = np.zeros((n_samples, n_samples))  # availability
 
@@ -93,7 +93,7 @@ class AffinityPropagation:
         exemplars_history = []
         no_change_count = 0
 
-        # 4. Main algorithm loop
+        # Main algorithm loop
         for iteration in range(self.max_iter):
 
             # r(i,k) = s(i,k) - max{ a(i,k') + s(i,k') } for k' != k
@@ -155,7 +155,7 @@ class AffinityPropagation:
 
         self.n_iter_ = iteration + 1
 
-        # 5. Extract results
+        # Extract results
         E = R + A
         self.cluster_centers_indices_ = np.where(np.diag(E) > 0)[0]
 
@@ -165,7 +165,7 @@ class AffinityPropagation:
             self.cluster_centers_ = np.array([])
             return self
 
-        # 6. Assign each point to nearest exemplar
+        # Assign each point to nearest exemplar
         self.labels_ = np.zeros(n_samples, dtype=int)
         for i in range(n_samples):
             # Find exemplar with highest similarity
