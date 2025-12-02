@@ -1,6 +1,6 @@
 import pytest
 
-from affinitypropagation.skeleton import fib, main
+from affinitypropagation.affinitypropagation import fib, main
 
 __author__ = "AH-repo"
 __copyright__ = "AH-repo"
