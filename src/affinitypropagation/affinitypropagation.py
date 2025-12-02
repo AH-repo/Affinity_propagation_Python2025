@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.cluster import AffinityPropagation as SKLearnAP
 
 class AffinityPropagation:
     """
@@ -227,3 +228,32 @@ class AffinityPropagation:
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.show()
+
+cluster1 = np.random.randn(200, 2) + [0, 0]
+cluster2 = np.random.randn(200, 2) + [5, 5]
+cluster3 = np.random.randn(200, 2) + [10, 0]
+ap = AffinityPropagation(damping=0.5, max_iter=500, preference=-50)
+X = np.vstack([cluster1, cluster2, cluster3])
+sk_ap = SKLearnAP(damping=0.5, preference=-50, random_state=42)
+sk_labels = sk_ap.fit_predict(X)
+labels = ap.fit_predict(X)
+ap.plot()
+plt.figure(figsize=(10, 8))
+unique_labels = np.unique(sk_labels)
+colors = plt.cm.rainbow(np.linspace(0, 1, len(unique_labels)))
+
+for label, color in zip(unique_labels, colors):
+    mask = sk_labels == label
+    plt.scatter(X[mask, 0], X[mask, 1], c=[color], s=100, alpha=0.6, label=f'Cluster {label}')
+
+exemplars = X[sk_ap.cluster_centers_indices_]
+plt.scatter(exemplars[:, 0], exemplars[:, 1], c='red', marker='*', s=500, edgecolors='black', linewidth=2, label='Exemplars', zorder=10)
+
+plt.title(f'Scikit-learn AP: {len(unique_labels)} clusters')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+
+print(f"Scikit-learn found {len(unique_labels)} clusters")
