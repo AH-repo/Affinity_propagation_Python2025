@@ -12,7 +12,8 @@ from setuptools import setup
 if __name__ == "__main__":
     try:
         setup(use_scm_version={"version_scheme": "no-guess-dev"}, install_requires=['scikit-learn', 'matplotlib',
-                                                                                    'numpy'])
+                                                                                    'numpy', 'pytest', 'pandas',
+                                                                                    'openpyxl'])
     except:  # noqa
         print(
             "\n\nAn error occurred while building the project, "
