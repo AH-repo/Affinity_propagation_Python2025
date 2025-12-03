@@ -117,6 +117,7 @@ class AffinityPropagation:
             R = self.damping * R + (1 - self.damping) * R_new
 
             # a(i,k) = min(0, r(k,k) + sum{ max(0, r(i',k)) } for i' != i,k
+            # a(k,k) = sum(max(0, R(i`,k)) for i`!= k
             # how much point i should choose k
             A_new = np.zeros_like(A)
             for i in range(n_samples):
