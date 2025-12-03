@@ -16,7 +16,7 @@ class TestAffinityPropagation:
         Should find 3 clusters for 3 blobs.
         """
         # small N because the implementation is slow
-        x, labels_true = make_blobs(n_samples=50, centers=3, cluster_std=0.5, random_state=42)
+        x, labels_true = make_blobs(n_samples=50, centers=3, cluster_std=0.5, random_state=2137)
 
         model = AffinityPropagation(damping=0.5, max_iter=100, preference=-50)
         model.fit(x)
@@ -81,7 +81,7 @@ class TestAffinityPropagation:
         """
 
         n_samples = 300
-        x, _ = make_blobs(n_samples=n_samples, centers=5, random_state=42)
+        x, _ = make_blobs(n_samples=n_samples, centers=5, random_state=2137)
 
         # measure baseline performance from scikit
         sk_model = SklearnAP(max_iter=10)

@@ -12,7 +12,7 @@ from affinitypropagation.affinitypropagation import AffinityPropagation
 def get_datasets():
     """Generates a dictionary of datasets to test."""
     n_samples = 200
-    random_state = 42
+    random_state = 2137
 
     datasets = []
 
@@ -138,7 +138,7 @@ def generate_full_report():
         adis_model = AffinityPropagation(damping=0.5, max_iter=100, preference=pref)
         adis_res = run_model("Custom", adis_model, X, y)
 
-        sk_model = SklearnAP(damping=0.5, max_iter=100, preference=pref, random_state=42)
+        sk_model = SklearnAP(damping=0.5, max_iter=100, preference=pref, random_state=2137)
         sk_res = run_model("Sklearn", sk_model, X, y)
 
         if adis_res:
