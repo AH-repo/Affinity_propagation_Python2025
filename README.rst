@@ -33,12 +33,12 @@
 AffinityPropagation
 ===================
 
-
+    Implementation: Adrian Homa
+    Testing: Maciej Kucharski
 
 
 .. _pyscaffold-notes:
-    Implementation: Adrian Homa
-    Testing: Maciej Kucharski
+
 Note
 ====
 
