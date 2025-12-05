@@ -38,15 +38,17 @@ AffinityPropagation
     Testing: Maciej Kucharski
 
 
-Introduction
+    Introduction
+
 Affinity Propagation is a clustering algorithm that automatically finds the number of clusters in a dataset. The algorithm identifies exemplars, which are representative data points that serve as cluster centers.
 
 
-Basic Idea
+    Basic Idea
+
 The algorithm works by treating every data point as a potential cluster center. Points then exchange messages with each other to decide which points should become exemplars and which points should belong to which cluster. This message passing continues until the algorithm reaches a stable configuration.
 
 
-Algorithm Steps
+    Algorithm Steps
 
 1. Computing Similarities
 
@@ -75,7 +77,7 @@ The same applies to availability. The damping factor lambda is typically set bet
 
 After each iteration, we identify exemplars by looking at points where r(k,k) + a(k,k) > 0. These are the points that have enough support to be cluster centers.
 
-. Assigning Clusters
+    Assigning Clusters
 
 Once we have our exemplars, each point is assigned to whichever exemplar it's most similar to. This gives us our final clustering.
 
@@ -84,7 +86,7 @@ Once we have our exemplars, each point is assigned to whichever exemplar it's mo
 The algorithm stops when the set of exemplars doesn't change for a certain number of iterations (15) or when we reach the maximum number of iterations.
 
 
- Parameters
+    Parameters
 
 **damping**: Controls how much we trust new information versus old information. Range is 0.5 to 1.0, with higher values making updates more conservative. Default is 0.5.
 
@@ -96,7 +98,7 @@ The algorithm stops when the set of exemplars doesn't change for a certain numbe
 
 **affinity**: How to compute the similarity matrix. Can be 'euclidean' for automatic computation or 'precomputed' if you provide your own similarity matrix.
 
- Tips for Use
+    Tips for Use
 **Adjusting the number of clusters**: If you're getting too many clusters, decrease the preference value. If you're getting too few, increase it.
 
 **Convergence issues**: If the exemplars keep changing, try increasing the damping factor closer to 1.0.
