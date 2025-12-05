@@ -5,6 +5,8 @@ class AffinityPropagation:
     """
     Implementation of Affinity Propagation clustering algorithm.
     The algorithm automatically finds the number of clusters.
+    Implementation: Adrian Homa
+    Testing: Maciej Kucharski
     """
 
     def __init__(self, damping=0.5, max_iter=200, convergence_iter=15, preference=None, affinity='euclidean', copy=True):
