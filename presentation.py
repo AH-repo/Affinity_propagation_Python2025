@@ -5,7 +5,7 @@ from sklearn.cluster import AffinityPropagation as SklearnAP
 from affinitypropagation import AffinityPropagation
 
 # Dataset
-X, _ = make_blobs(n_samples=1000, centers=3)
+X, _ = make_blobs(n_samples=100, centers=3)
 
 
 my_ap = AffinityPropagation(damping=0.7)

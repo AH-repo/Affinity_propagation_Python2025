@@ -37,7 +37,8 @@ AffinityPropagation
 
 
 .. _pyscaffold-notes:
-
+    Implementation: Adrian Homa
+    Testing: Maciej Kucharski
 Note
 ====
 
