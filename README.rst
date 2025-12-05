@@ -34,6 +34,7 @@ AffinityPropagation
 ===================
 
     Implementation: Adrian Homa
+
     Testing: Maciej Kucharski
 
 
